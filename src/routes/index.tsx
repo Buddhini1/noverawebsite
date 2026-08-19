@@ -94,9 +94,11 @@ function Home() {
         />
         <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="plane-fly absolute left-0 top-1/3 flex items-center">
-            <span className="plane-trail block h-px w-24 bg-gradient-to-r from-transparent to-white/70 sm:w-40" />
+            <span className="plane-trail block h-[3px] w-32 origin-right rounded-full bg-gradient-to-r from-transparent via-white/25 to-white/70 blur-[3px] sm:w-56" />
+            <span className="plane-trail-core -ml-24 block h-px w-24 rounded-full bg-gradient-to-r from-transparent to-white/85 sm:-ml-40 sm:w-40" />
             <Plane className="size-7 -rotate-12 text-white/90 drop-shadow-[0_2px_10px_rgba(255,255,255,0.35)] sm:size-9" />
           </div>
+
         </div>
 
         <div className="relative mx-auto max-w-7xl px-5 py-28 lg:px-8 lg:py-40">
