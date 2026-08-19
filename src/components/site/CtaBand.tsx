@@ -8,7 +8,7 @@ export function CtaBand() {
       <div className="surface-deep relative overflow-hidden rounded-3xl px-6 py-14 text-center shadow-lift sm:px-12">
         <div
           aria-hidden
-          className="pointer-events-none absolute -left-20 bottom--20 size-80 rounded-full bg-accent/20 blur-3xl"
+          className="pointer-events-none absolute -bottom-20 -left-20 size-80 rounded-full bg-accent/20 blur-3xl"
         />
         <div className="relative">
           <h2 className="text-3xl font-bold text-current sm:text-4xl">
