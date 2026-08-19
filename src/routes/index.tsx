@@ -45,12 +45,15 @@ function Home() {
     <>
       <section className="relative isolate overflow-hidden">
         <img
+          ref={heroRef}
           src={heroImg}
           alt="Student watching an aircraft at the airport before departing to study abroad"
           width={1600}
           height={1008}
-          className="absolute inset-0 size-full object-cover"
+          style={{ transform: `translate3d(0, ${heroOffset}px, 0) scale(1.15)` }}
+          className="absolute inset-0 size-full object-cover will-change-transform"
         />
+
         <div aria-hidden className="absolute inset-0 bg-primary/78" />
         <div
           aria-hidden
