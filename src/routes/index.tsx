@@ -40,9 +40,40 @@ const offerings = [
   { icon: HomeIcon, title: "Accommodation", note: "Settled before you fly" },
 ];
 
+function DestinationCard({ destination: d }: { destination: (typeof destinations)[number] }) {
+  const { ref, offset } = useParallax<HTMLImageElement>(0.08);
+  return (
+    <Link
+      to="/destinations/$slug"
+      params={{ slug: d.slug }}
+      className="group relative overflow-hidden rounded-2xl shadow-soft"
+    >
+      <img
+        ref={ref}
+        src={d.image}
+        alt={`Studying in ${d.name}`}
+        loading="lazy"
+        width={1024}
+        height={683}
+        style={{ transform: `translate3d(0, ${offset}px, 0) scale(1.18)` }}
+        className="h-64 w-full object-cover will-change-transform transition-[filter] duration-700 group-hover:brightness-110"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/25 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 p-6">
+        <p className="text-2xl">{d.flag}</p>
+        <h3 className="mt-1 text-xl font-semibold text-white">{d.name}</h3>
+        <p className="text-sm text-white/80">{d.tagline}</p>
+      </div>
+    </Link>
+  );
+}
+
 function Home() {
+  const { ref: heroRef, offset: heroOffset } = useParallax<HTMLImageElement>(0.18);
+
   return (
     <>
+
       <section className="relative isolate overflow-hidden">
         <img
           ref={heroRef}
