@@ -147,28 +147,9 @@ function Home() {
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {destinations.slice(0, 6).map((d) => (
-            <Link
-              key={d.slug}
-              to="/destinations/$slug"
-              params={{ slug: d.slug }}
-              className="group relative overflow-hidden rounded-2xl shadow-soft"
-            >
-              <img
-                src={d.image}
-                alt={`Studying in ${d.name}`}
-                loading="lazy"
-                width={1024}
-                height={683}
-                className="h-64 w-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/25 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 p-6">
-                <p className="text-2xl">{d.flag}</p>
-                <h3 className="mt-1 text-xl font-semibold text-white">{d.name}</h3>
-                <p className="text-sm text-white/80">{d.tagline}</p>
-              </div>
-            </Link>
+            <DestinationCard key={d.slug} destination={d} />
           ))}
+
         </div>
       </section>
 
