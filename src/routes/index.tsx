@@ -12,6 +12,8 @@ import heroImg from "@/assets/hero-abroad.jpg";
 import { Button } from "@/components/ui/button";
 import { CtaBand } from "@/components/site/CtaBand";
 import { destinations, stats, whyChooseUs } from "@/lib/site-data";
+import { useParallax } from "@/hooks/use-parallax";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
