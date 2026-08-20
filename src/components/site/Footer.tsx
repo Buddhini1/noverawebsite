@@ -25,6 +25,7 @@ export function Footer() {
               { to: "/why-choose-us", label: "Why Choose Us" },
               { to: "/services", label: "Services" },
               { to: "/how-it-works", label: "How It Works" },
+              { to: "/blog", label: "Blog" },
               { to: "/contact", label: "Contact Us" },
             ].map((l) => (
               <li key={l.to}>

@@ -1,12 +1,8 @@
-import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Clock, Mail, MapPin, MessageCircle } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { contact, destinations } from "@/lib/site-data";
+import { LeadForm } from "@/components/site/LeadForm";
+import { contact } from "@/lib/site-data";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -28,18 +24,6 @@ export const Route = createFileRoute("/contact")({
 });
 
 function Contact() {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    destination: "",
-    message: "",
-  });
-
-  const waHref = `https://wa.me/94776157015?text=${encodeURIComponent(
-    `Hello Novera International,\n\nName: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\nDestination: ${form.destination}\n\n${form.message}`,
-  )}`;
-
   return (
     <>
       <PageHero
@@ -49,77 +33,7 @@ function Contact() {
       />
 
       <section className="mx-auto grid max-w-7xl gap-10 px-5 py-20 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:px-8">
-        <form
-          className="rounded-2xl border border-border bg-card p-8 shadow-soft"
-          onSubmit={(e) => {
-            e.preventDefault();
-            window.open(waHref, "_blank", "noopener");
-          }}
-        >
-          <h2 className="text-2xl font-bold">Request your free consultation</h2>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Fill this in and we'll continue the conversation on WhatsApp.
-          </p>
-
-          <div className="mt-6 grid gap-5 sm:grid-cols-2">
-            <div className="grid gap-2">
-              <Label htmlFor="name">Full name</Label>
-              <Input
-                id="name"
-                required
-                value={form.name}
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
-              />
-            </div>
-            <div className="grid gap-2">
-              <Label htmlFor="phone">Phone</Label>
-              <Input
-                id="phone"
-                required
-                value={form.phone}
-                onChange={(e) => setForm({ ...form, phone: e.target.value })}
-              />
-            </div>
-            <div className="grid gap-2 sm:col-span-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                value={form.email}
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
-              />
-            </div>
-            <div className="grid gap-2 sm:col-span-2">
-              <Label htmlFor="destination">Preferred destination</Label>
-              <select
-                id="destination"
-                value={form.destination}
-                onChange={(e) => setForm({ ...form, destination: e.target.value })}
-                className="h-9 rounded-md border border-input bg-background px-3 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
-              >
-                <option value="">Not sure yet</option>
-                {destinations.map((d) => (
-                  <option key={d.slug} value={d.name}>
-                    {d.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="grid gap-2 sm:col-span-2">
-              <Label htmlFor="message">How can we help?</Label>
-              <Textarea
-                id="message"
-                rows={5}
-                value={form.message}
-                onChange={(e) => setForm({ ...form, message: e.target.value })}
-              />
-            </div>
-          </div>
-
-          <Button type="submit" variant="gold" size="lg" className="mt-6 w-full sm:w-auto">
-            Send via WhatsApp
-          </Button>
-        </form>
+        <LeadForm />
 
         <aside className="space-y-4">
           <a
