@@ -16,6 +16,7 @@ import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as WhyChooseUsRouteImport } from './routes/why-choose-us'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
+import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
 import { Route as DestinationsIndexRouteImport } from './routes/destinations/index'
 import { Route as DestinationsSlugRouteImport } from './routes/destinations/$slug'
 
@@ -54,6 +55,11 @@ const BlogIndexRoute = BlogIndexRouteImport.update({
   path: '/blog/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DestinationsIndexRoute = DestinationsIndexRouteImport.update({
   id: '/destinations/',
   path: '/destinations/',
@@ -72,6 +78,7 @@ export interface FileRoutesByFullPath {
   '/how-it-works': typeof HowItWorksRoute
   '/services': typeof ServicesRoute
   '/why-choose-us': typeof WhyChooseUsRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/destinations/$slug': typeof DestinationsSlugRoute
   '/blog/': typeof BlogIndexRoute
   '/destinations/': typeof DestinationsIndexRoute
@@ -83,6 +90,7 @@ export interface FileRoutesByTo {
   '/how-it-works': typeof HowItWorksRoute
   '/services': typeof ServicesRoute
   '/why-choose-us': typeof WhyChooseUsRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/destinations/$slug': typeof DestinationsSlugRoute
   '/blog': typeof BlogIndexRoute
   '/destinations': typeof DestinationsIndexRoute
@@ -95,6 +103,7 @@ export interface FileRoutesById {
   '/how-it-works': typeof HowItWorksRoute
   '/services': typeof ServicesRoute
   '/why-choose-us': typeof WhyChooseUsRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/destinations/$slug': typeof DestinationsSlugRoute
   '/blog/': typeof BlogIndexRoute
   '/destinations/': typeof DestinationsIndexRoute
@@ -108,6 +117,7 @@ export interface FileRouteTypes {
     | '/how-it-works'
     | '/services'
     | '/why-choose-us'
+    | '/blog/$slug'
     | '/destinations/$slug'
     | '/blog/'
     | '/destinations/'
@@ -119,6 +129,7 @@ export interface FileRouteTypes {
     | '/how-it-works'
     | '/services'
     | '/why-choose-us'
+    | '/blog/$slug'
     | '/destinations/$slug'
     | '/blog'
     | '/destinations'
@@ -130,6 +141,7 @@ export interface FileRouteTypes {
     | '/how-it-works'
     | '/services'
     | '/why-choose-us'
+    | '/blog/$slug'
     | '/destinations/$slug'
     | '/blog/'
     | '/destinations/'
@@ -142,6 +154,7 @@ export interface RootRouteChildren {
   HowItWorksRoute: typeof HowItWorksRoute
   ServicesRoute: typeof ServicesRoute
   WhyChooseUsRoute: typeof WhyChooseUsRoute
+  BlogSlugRoute: typeof BlogSlugRoute
   DestinationsSlugRoute: typeof DestinationsSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
   DestinationsIndexRoute: typeof DestinationsIndexRoute
@@ -198,6 +211,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/destinations/': {
       id: '/destinations/'
       path: '/destinations'
@@ -222,6 +242,7 @@ const rootRouteChildren: RootRouteChildren = {
   HowItWorksRoute: HowItWorksRoute,
   ServicesRoute: ServicesRoute,
   WhyChooseUsRoute: WhyChooseUsRoute,
+  BlogSlugRoute: BlogSlugRoute,
   DestinationsSlugRoute: DestinationsSlugRoute,
   BlogIndexRoute: BlogIndexRoute,
   DestinationsIndexRoute: DestinationsIndexRoute,
