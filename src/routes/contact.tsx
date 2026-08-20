@@ -1,12 +1,8 @@
-import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Clock, Mail, MapPin, MessageCircle } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { contact, destinations } from "@/lib/site-data";
+import { LeadForm } from "@/components/site/LeadForm";
+import { contact } from "@/lib/site-data";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
