@@ -12,8 +12,6 @@ import heroImg from "@/assets/hero-abroad.jpg";
 import { Button } from "@/components/ui/button";
 import { CtaBand } from "@/components/site/CtaBand";
 import { destinations, stats, whyChooseUs } from "@/lib/site-data";
-import { useParallax } from "@/hooks/use-parallax";
-
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -42,51 +40,17 @@ const offerings = [
   { icon: HomeIcon, title: "Accommodation", note: "Settled before you fly" },
 ];
 
-function DestinationCard({ destination: d }: { destination: (typeof destinations)[number] }) {
-  const { ref, offset } = useParallax<HTMLImageElement>(0.08);
-  return (
-    <Link
-      to="/destinations/$slug"
-      params={{ slug: d.slug }}
-      className="group relative overflow-hidden rounded-2xl shadow-soft"
-    >
-      <img
-        ref={ref}
-        src={d.image}
-        alt={`Studying in ${d.name}`}
-        loading="lazy"
-        width={1024}
-        height={683}
-        style={{ transform: `translate3d(0, ${offset}px, 0) scale(1.18)` }}
-        className="h-64 w-full object-cover will-change-transform transition-[filter] duration-700 group-hover:brightness-110"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/25 to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 p-6">
-        <p className="text-2xl">{d.flag}</p>
-        <h3 className="mt-1 text-xl font-semibold text-white">{d.name}</h3>
-        <p className="text-sm text-white/80">{d.tagline}</p>
-      </div>
-    </Link>
-  );
-}
-
 function Home() {
-  const { ref: heroRef, offset: heroOffset } = useParallax<HTMLImageElement>(0.18);
-
   return (
     <>
-
       <section className="relative isolate overflow-hidden">
         <img
-          ref={heroRef}
           src={heroImg}
           alt="Student watching an aircraft at the airport before departing to study abroad"
           width={1600}
           height={1008}
-          style={{ transform: `translate3d(0, ${heroOffset}px, 0) scale(1.15)` }}
-          className="absolute inset-0 size-full object-cover will-change-transform"
+          className="absolute inset-0 size-full object-cover"
         />
-
         <div aria-hidden className="absolute inset-0 bg-primary/78" />
         <div
           aria-hidden
@@ -94,11 +58,9 @@ function Home() {
         />
         <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="plane-fly absolute left-0 top-1/3 flex items-center">
-            <span className="plane-trail block h-[3px] w-32 origin-right rounded-full bg-gradient-to-r from-transparent via-white/25 to-white/70 blur-[3px] sm:w-56" />
-            <span className="plane-trail-core -ml-24 block h-px w-24 rounded-full bg-gradient-to-r from-transparent to-white/85 sm:-ml-40 sm:w-40" />
+            <span className="plane-trail block h-px w-24 bg-gradient-to-r from-transparent to-white/70 sm:w-40" />
             <Plane className="size-7 -rotate-12 text-white/90 drop-shadow-[0_2px_10px_rgba(255,255,255,0.35)] sm:size-9" />
           </div>
-
         </div>
 
         <div className="relative mx-auto max-w-7xl px-5 py-28 lg:px-8 lg:py-40">
@@ -185,9 +147,28 @@ function Home() {
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {destinations.slice(0, 6).map((d) => (
-            <DestinationCard key={d.slug} destination={d} />
+            <Link
+              key={d.slug}
+              to="/destinations/$slug"
+              params={{ slug: d.slug }}
+              className="group relative overflow-hidden rounded-2xl shadow-soft"
+            >
+              <img
+                src={d.image}
+                alt={`Studying in ${d.name}`}
+                loading="lazy"
+                width={1024}
+                height={683}
+                className="h-64 w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/25 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 p-6">
+                <p className="text-2xl">{d.flag}</p>
+                <h3 className="mt-1 text-xl font-semibold text-white">{d.name}</h3>
+                <p className="text-sm text-white/80">{d.tagline}</p>
+              </div>
+            </Link>
           ))}
-
         </div>
       </section>
 
