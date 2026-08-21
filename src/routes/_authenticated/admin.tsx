@@ -208,7 +208,7 @@ function BlogPanel() {
     mutationFn: () =>
       save({
         data: {
-          id: draft.id,
+          ...(draft.id ? { id: draft.id } : {}),
           slug: draft.slug || draft.title || "",
           title: draft.title ?? "",
           excerpt: draft.excerpt ?? "",
