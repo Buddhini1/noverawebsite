@@ -64,9 +64,12 @@ export const updateLead = createServerFn({ method: "POST" })
     };
   })
   .handler(async ({ data, context }) => {
-    const patch: Record<string, unknown> = {};
-    if (data.status) patch["status"] = data.status;
-    if (data.internal_notes !== undefined) patch["internal_notes"] = data.internal_notes;
+    const patch: {
+      status?: (typeof leadStatuses)[number];
+      internal_notes?: string;
+    } = {};
+    if (data.status) patch.status = data.status;
+    if (data.internal_notes !== undefined) patch.internal_notes = data.internal_notes;
     const { error } = await context.supabase.from("leads").update(patch).eq("id", data.id);
     if (error) throw new Error(error.message);
     return { ok: true };
